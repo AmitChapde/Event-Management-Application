@@ -1,22 +1,18 @@
-const express=require('express');
-const router=express.Router();
+const express = require("express");
+const router = express.Router();
 const {
   createProfileController,
   getAllProfilesController,
   getProfileByIdController,
   updateProfileTimezoneController,
-} =require('../controllers/profileController')
+} = require("../controllers/profileController");
 
+router.post("/", createProfileController);
 
+router.get("/", getAllProfilesController);
 
-router.post('/',createProfileController)
+router.get("/:id", getProfileByIdController);
 
-router.get('/',getAllProfilesController)
+router.put("/:id/",updateProfileTimezoneController );
 
-router.get('/:id',getProfileByIdController);
-
-router.put('/:id',updateProfileTimezoneController)
-
-
-
-module.exports=router;
+module.exports = router;

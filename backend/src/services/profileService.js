@@ -27,4 +27,5 @@ module.exports = {
   getAllProfiles,
   getProfileById,
   updateProfileTimezone,
+  
 };

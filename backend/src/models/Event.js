@@ -20,7 +20,7 @@ const EventSchema = new mongoose.Schema(
     },
     assignedProfiles: [
       {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Profile",
         required: true,
       },
