@@ -1,27 +1,20 @@
 import React, { useEffect, useState } from "react";
 import styles from "./CurrentProfileFilter.module.css";
-import { getAllProfiles, createProfile } from "../../../api/profileApi";
 import { ChevronsUpDown, Check } from "lucide-react";
+import { useProfiles } from "../../../contexts/ProfilesContext";
 
-function CurrentProfileFilter({onSelect}) {
+function CurrentProfileFilter({ onSelect }) {
+  const { profiles, addProfile } = useProfiles();
   const [showList, setShowList] = useState(false);
-  const [profiles, setProfiles] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filtered, setFiltered] = useState([]);
   const [selected, setSelected] = useState(null);
   const [newName, setNewName] = useState("");
+  const [isAddingProfile, setIsAddingProfile] = useState(false);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const res = await getAllProfiles();
-        setProfiles(res.data);
-        setFiltered(res.data);
-      } catch (err) {
-        console.log("Failed loading profiles", err);
-      }
-    })();
-  }, []);
+    setFiltered(profiles || []);
+  }, [profiles]);
 
   const handleSearch = (value) => {
     setSearchText(value);
@@ -31,7 +24,7 @@ function CurrentProfileFilter({onSelect}) {
       return;
     }
 
-    const results = profiles.filter((p) =>
+    const results = (profiles || []).filter((p) =>
       p.name.toLowerCase().includes(value.toLowerCase())
     );
     setFiltered(results);
@@ -43,17 +36,22 @@ function CurrentProfileFilter({onSelect}) {
     if (onSelect) onSelect(p._id);
   };
 
-  const addProfile = async () => {
-    if (!newName.trim()) return;
+  const handleAddProfile = async () => {
+    const name = newName.trim();
+    if (!name) return;
 
+    setIsAddingProfile(true);
     try {
-      const res = await createProfile({ name: newName });
-      const updatedList = [...profiles, res.data];
-      setProfiles(updatedList);
-      setFiltered(updatedList);
+      const created = await addProfile({ name });
+      if (created) {
+        setSelected(created);
+        if (onSelect) onSelect(created._id);
+      }
       setNewName("");
     } catch (err) {
-      console.log("Error adding profile", err);
+      console.error("Error adding profile", err);
+    } finally {
+      setIsAddingProfile(false);
     }
   };
 
@@ -64,7 +62,8 @@ function CurrentProfileFilter({onSelect}) {
         onClick={() => setShowList((prev) => !prev)}
       >
         <p className={styles.subContainer}>
-          {selected ? selected.name : "Search Profile..."} <ChevronsUpDown size={15}/>
+          {selected ? selected.name : "Search Profile..."}{" "}
+          <ChevronsUpDown size={15} />
         </p>
       </div>
 
@@ -108,10 +107,15 @@ function CurrentProfileFilter({onSelect}) {
               placeholder="Add profile..."
               value={newName}
               onChange={(e) => setNewName(e.target.value)}
+              disabled={isAddingProfile}
             />
 
-            <button className={styles.addBtn} onClick={addProfile}>
-              Add
+            <button
+              className={styles.addBtn}
+              onClick={handleAddProfile}
+              disabled={isAddingProfile}
+            >
+              {isAddingProfile ? "Adding..." : "Add"}
             </button>
           </div>
         </div>

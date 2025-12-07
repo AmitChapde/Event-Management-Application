@@ -1,28 +1,17 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./ProfileSelector.module.css";
-import { getAllProfiles, createProfile } from "../../../api/profileApi";
 import { ChevronsUpDown, Check } from "lucide-react";
+import { useProfiles } from "../../../contexts/ProfilesContext";
 
 function ProfileSelector({ value, onChange }) {
+  const { profiles, addProfile } = useProfiles();
   const [isOpen, setIsOpen] = useState(false);
-  const [allProfiles, setAllProfiles] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedProfiles, setSelectedProfiles] = useState([]);
   const [newProfileName, setNewProfileName] = useState("");
+  const [isAddingProfile, setIsAddingProfile] = useState(false);
   const dropdownRef = useRef(null);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await getAllProfiles();
-        setAllProfiles(Array.isArray(response?.data) ? response.data : []);
-      } catch (error) {
-        console.error("Failed to load profiles", error);
-      }
-    })();
-  }, []);
-
- 
   useEffect(() => {
     if (Array.isArray(value)) {
       setSelectedProfiles(value);
@@ -31,7 +20,6 @@ function ProfileSelector({ value, onChange }) {
     }
   }, [value]);
 
- 
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -42,14 +30,12 @@ function ProfileSelector({ value, onChange }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-
   const filteredProfiles = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
-    if (!q) return allProfiles;
-    return allProfiles.filter((p) => p.name?.toLowerCase().includes(q));
-  }, [allProfiles, searchQuery]);
+    if (!q) return profiles || [];
+    return (profiles || []).filter((p) => p.name?.toLowerCase().includes(q));
+  }, [profiles, searchQuery]);
 
-  
   const toggleProfile = (profile) => {
     const isSelected = selectedProfiles.some((p) => p._id === profile._id);
     const updated = isSelected
@@ -60,23 +46,25 @@ function ProfileSelector({ value, onChange }) {
     onChange?.(updated);
   };
 
- 
   const handleAddProfile = async () => {
     const name = newProfileName.trim();
     if (!name) return;
 
+    setIsAddingProfile(true);
     try {
-      const response = await createProfile({ name });
-      const newProfile = response?.data;
-      if (newProfile?._id) {
-        setAllProfiles((prev) => [...prev, newProfile]);
+      const created = await addProfile({ name });
+      if (created) {
+        const newSelected = [...selectedProfiles, created];
+        setSelectedProfiles(newSelected);
+        onChange?.(newSelected);
         setNewProfileName("");
       }
     } catch (error) {
       console.error("Could not add profile", error);
+    } finally {
+      setIsAddingProfile(false);
     }
   };
-
 
   const headerText = () => {
     if (!selectedProfiles?.length) return "Select profile...";
@@ -135,9 +123,14 @@ function ProfileSelector({ value, onChange }) {
               placeholder="Add profile..."
               value={newProfileName}
               onChange={(e) => setNewProfileName(e.target.value)}
+              disabled={isAddingProfile}
             />
-            <button className={styles.addBtn} onClick={handleAddProfile}>
-              Add
+            <button
+              className={styles.addBtn}
+              onClick={handleAddProfile}
+              disabled={isAddingProfile}
+            >
+              {isAddingProfile ? "Adding..." : "Add"}
             </button>
           </div>
         </div>
