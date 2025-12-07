@@ -1,0 +1,44 @@
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #323232;
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  min-width: 200px;
+  animation: slideIn 0.3s ease-out;
+  z-index: 9999;
+}
+
+.message {
+  flex: 1;
+  font-size: 0.95rem;
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-left: 12px;
+}
+
+.closeButton:hover {
+  color: #ff6b6b;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

@@ -11,17 +11,17 @@ const objectId = (value, helpers) => {
 const createProfileSchema = {
   body: Joi.object({
     name: Joi.string().min(1).max(100).required(),
-    timezone: Joi.string().min(1).required(),
   }),
 };
 
-const updateProfileTimezoneSchema = {
+const updateProfileSchema = {
   params: Joi.object({
     id: Joi.string().custom(objectId).required(),
+
   }),
 
   body: Joi.object({
-    newTimezone: Joi.string().required().label("Timezone"),
+    name: Joi.string().min(1).max(100).required(),
   }),
 };
 
@@ -33,6 +33,6 @@ const profileIdSchema = {
 
 module.exports = {
   createProfileSchema,
-  updateProfileTimezoneSchema,
+  updateProfileSchema,
   profileIdSchema,
 };

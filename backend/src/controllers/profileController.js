@@ -2,7 +2,7 @@ const {
   createProfile,
   getAllProfiles,
   getProfileById,
-  updateProfileTimezone,
+  updateProfile,
 } = require("../services/profileService");
 
 const createProfileController = async (req, res) => {
@@ -39,7 +39,7 @@ const getProfileByIdController = async (req, res) => {
 
     if (!profile) {
       return res.status(404).json({ message: "Profile not Found" });
-    }
+    } 
     res.status(200).json(profile);
   } catch (error) {
     res
@@ -48,29 +48,26 @@ const getProfileByIdController = async (req, res) => {
   }
 };
 
-const updateProfileTimezoneController = async (req, res) => {
+const updateProfileController = async (req, res) => {
   try {
-    const { newTimezone } = req.body;
     const profileId = req.params.id;
+    const { name } = req.body;
 
-    if (!newTimezone) {
-      return res.status(400).json({ message: "Timezone is not valid" });
-    }
 
-    const profile = await updateProfileTimezone(profileId, newTimezone);
+    const updatedProfile = await updateProfile(profileId,name);
 
-    if (!profile) {
+    if (!updateProfile) {
       return res.status(404).json({ message: "Profile not Found" });
     }
 
     res.status(200).json({
-      message: "Timezone Updated",
-      timezone: profile.timezone,
+      message: "Profile Updated",
+      timezone: updatedProfile,
     });
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Error Updating Timezone", error: error.message });
+      .json({ message: "Error Updating Profile", error: error.message });
   }
 };
 
@@ -78,5 +75,5 @@ module.exports = {
   createProfileController,
   getAllProfilesController,
   getProfileByIdController,
-  updateProfileTimezoneController,
+  updateProfileController,
 };

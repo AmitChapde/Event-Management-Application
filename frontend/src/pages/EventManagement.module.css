@@ -1,0 +1,89 @@
+.page {
+  padding: 24px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 10;
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mainTitle {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.subTitle {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.headerRight {
+  width: 260px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 20;
+}
+
+.eventManagementContainer {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  height: calc(100vh - 150px);
+  min-height: 600px;
+}
+
+.leftPanel,
+.rightPanel {
+  flex: 1;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  padding: 24px;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.leftPanel {
+  overflow-y: auto;
+}
+
+.rightPanel {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 900px) {
+  .eventManagementContainer {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .leftPanel,
+  .rightPanel {
+    height: auto;
+    min-height: 400px;
+  }
+}

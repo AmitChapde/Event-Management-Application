@@ -1,0 +1,110 @@
+.container {
+  position: relative;
+  font-family: "Inter", sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.headerBox {
+  cursor: pointer;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  padding: 12px;
+  border: 1px solid #e6e1ff;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  z-index: 50;
+}
+
+.searchField {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d5cfff;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.searchField:focus {
+  border-color: #8a6fff;
+  outline: none;
+}
+
+.profileList {
+  max-height: 150px;
+  overflow-y: auto;
+  margin-bottom: 14px;
+}
+
+.profileItem {
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.profileItem:hover {
+  background: #eee8ff;
+}
+
+.selected {
+  background: #8a6fff;
+  color: white !important;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.noData {
+  text-align: center;
+  color: #a19cc5;
+  font-size: 13px;
+}
+
+.addRow {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.addInput {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #000;
+  border-radius: 10px;
+}
+
+.addInput:focus {
+  border-color: #8a6fff;
+  outline: none;
+}
+
+.addBtn {
+  padding: 0.5rem 1rem;
+  background: #8a6fff;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.addBtn:hover {
+  background: #7256e9;
+}

@@ -1,0 +1,75 @@
+.container {
+  max-width: 400px;
+  background-color: #ffffff;
+}
+
+.label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #333;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.dateInputWrapper {
+  position: relative;
+  flex-grow: 1;
+}
+
+.dateDisplayButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #333;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dateDisplayButton:hover {
+  border-color: #aaa;
+}
+
+.calendarIcon {
+  display: flex;
+  align-items: center;
+  color: #555;
+}
+
+.timeInputWrapper {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 0.5rem;
+}
+
+.timeInput {
+  border: none;
+  background: transparent;
+  padding: 0.6rem 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.timeClearButton {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0 0.2rem;
+  line-height: 1;
+}

@@ -7,17 +7,17 @@ const createProfile = async (name) => {
 };
 
 const getAllProfiles = async () => {
-  return Profile.find().select("_id name timezone");
+  return Profile.find().select("_id name ");
 };
 
 const getProfileById = async (id) => {
-  return Profile.findById(id).select("_id name timezone");
+  return Profile.findById(id).select("_id name ");
 };
 
-const updateProfileTimezone = async (id, newTimezone) => {
+const updateProfile = async (id,name) => {
   return Profile.findByIdAndUpdate(
     id,
-    { timezone: newTimezone },
+    { name },
     { new: true }
   );
 };
@@ -26,6 +26,6 @@ module.exports = {
   createProfile,
   getAllProfiles,
   getProfileById,
-  updateProfileTimezone,
+  updateProfile,
   
 };

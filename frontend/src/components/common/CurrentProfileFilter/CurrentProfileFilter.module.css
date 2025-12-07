@@ -1,0 +1,127 @@
+.container {
+  position: relative;        
+  width: 260px;
+  font-family: "Inter", sans-serif;
+  z-index: 10;             
+}
+
+
+.inputBox {
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  background: #fff;
+}
+
+.subContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #111;
+  font-size: 14px;
+}
+
+
+.modal {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+  z-index: 10000;          
+  padding: 12px;
+}
+
+.search {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d5d5d5;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.search:focus {
+  border-color: #8c6fff;
+  outline: none;
+}
+
+.profileList {
+  max-height: 180px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+}
+
+.profileItem {
+  padding: 8px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #111;
+  transition: background 0.2s ease;
+}
+
+.profileItem:hover {
+  background: #f4f0ff;
+}
+
+.selected {
+  background: #8a6fff;
+  color: #fff !important;
+}
+
+.selctionContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.addSection {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.addInput {
+  flex: 1;
+  padding: 8px 10px;
+  font-size: 13px;
+  border: 1px solid #d5d5d5;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.addInput:focus {
+  border-color: #8c6fff;
+}
+
+.addInput::placeholder {
+  color: #9b9b9b;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+.addBtn {
+  padding: 8px 12px;
+  background: #8a6fff;
+  color: white;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+  transition: 0.2s ease;
+}
+
+.addBtn:hover {
+  background: #7256e9;
+}
+
+

@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 20px;
+}
+
+.title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.tzLabel {
+  font-size: 14px;
+  color: #555;
+  font-weight: 500;
+}
+
+.list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-right: 8px;
+}
+
+.placeholder,
+.errorMsg {
+  text-align: center;
+  color: #888;
+  margin-top: 16px;
+}
+
+.list::-webkit-scrollbar {
+  width: 6px;
+}
+.list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+.list::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+.list::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

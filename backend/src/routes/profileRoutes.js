@@ -3,7 +3,7 @@ const router = express.Router();
 const validate = require("../middleware/validate");
 const {
   createProfileSchema,
-  updateProfileTimezoneSchema,
+  updateProfileSchema,
   profileIdSchema,
 } = require("../validations/profile.validation");
 
@@ -11,7 +11,7 @@ const {
   createProfileController,
   getAllProfilesController,
   getProfileByIdController,
-  updateProfileTimezoneController,
+  updateProfileController,
 } = require("../controllers/profileController");
 
 router.post("/", validate(createProfileSchema), createProfileController);
@@ -21,10 +21,10 @@ router.get("/", getAllProfilesController);
 router.get("/:id", validate(profileIdSchema), getProfileByIdController);
 
 router.put(
-  "/:id/",
+  "/:id",
   validate(profileIdSchema),
-  validate(updateProfileTimezoneSchema),
-  updateProfileTimezoneController
+  validate(updateProfileSchema),
+  updateProfileController
 );
 
 module.exports = router;
