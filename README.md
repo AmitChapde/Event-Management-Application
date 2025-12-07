@@ -222,7 +222,7 @@ curl -X POST http://localhost:3000/api/profiles
 
 ## Screenshot
 
-**Event Mangement UI**
+**Event Mangement Application UI**
 
 ![App screenshot](./frontend/public/pic1.png)
 
