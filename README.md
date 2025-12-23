@@ -230,8 +230,6 @@ curl -X POST http://localhost:3000/api/profiles
 
 
 
-Thank you for reviewing the Event Management Application. This assignment is designed to demonstrate a complete full-stack setup, robust environment configuration, and seamless API usage across both the backend and frontend components.
-
 
 
 
