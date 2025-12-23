@@ -12,7 +12,7 @@ function EventManagement() {
       <div className={styles.content}>
         <div className={styles.pageHeader}>
           <div className={styles.headerLeft}>
-            <h1 className={styles.mainTitle}>Event Management</h1>
+            <h1 className={styles.mainTitle}>ZoneSync</h1>
             <p className={styles.subTitle}>
               Create and manage events across multiple timezones
             </p>
